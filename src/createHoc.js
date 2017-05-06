@@ -9,6 +9,18 @@ const refs = sheet => sheet[refNs] || 0
 const dec = sheet => --sheet[refNs]
 const inc = sheet => ++sheet[refNs]
 
+function combineClasses(sheet, classes) {
+  if (!sheet) sheet = {classes: {}}
+  if (!classes) return sheet.classes
+  const result = {}
+  for (let key in sheet.classes) {
+    result[key] = classes[key]
+      ? `${sheet.classes[key]} ${classes[key]}`
+      : sheet.classes[key]
+  }
+  return result
+}
+
 /**
  * Wrap a Component into a JSS Container Component.
  *
@@ -105,8 +117,9 @@ export default (jss, InnerComponent, stylesOrSheet, options = {}) => {
     }
 
     render() {
+      const {classes} = this.props
       const sheet = this.dynamicSheet || this.staticSheet
-      return <InnerComponent sheet={sheet} classes={sheet.classes} {...this.props} />
+      return <InnerComponent sheet={sheet} classes={combineClasses(sheet, classes)} {...this.props} />
     }
   }
 }
