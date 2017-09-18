@@ -60,7 +60,6 @@ export default (stylesOrCreator, InnerComponent, options = {}) => {
       ...contextTypes,
       ...(isThemingEnabled && themeListener.contextTypes)
     }
-    static defaultProps = InnerComponent.defaultProps
 
     constructor(props, context) {
       super(props, context)
