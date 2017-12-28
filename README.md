@@ -206,6 +206,17 @@ export default function render(req, res) {
 }
 ```
 
+### Use custom `generateClassName` function on client or server
+
+You can put a custom `generateClassName` function on context with `JssProvider`:
+```
+const jsx = (
+  <JssProvider generateClassName={myGenerateClassName}>
+    <MyApp />
+  </JssProvider>
+)
+```
+
 ### Reuse styles in different components
 
 In order to reuse the same styles __and__ the same generated style sheet between 2 entirely different and unrelated components, we suggest extracting a renderer component and reusing that.
